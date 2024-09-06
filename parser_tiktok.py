@@ -49,9 +49,9 @@ cls = lambda: os.system('cls' if os.name == 'nt' else 'clear')
 cls()
 
 # Get user input
-nik = input("Введите ник пользователя TikTok без @: ")
+nik = input("Enter the user's nickname Tik Tok without @: ")
 url_tiktok = URL_TIKTOK_PREFIX + nik
-logger.debug("Введите ник пользователя TikTok без @: %s", nik)
+logger.debug("Enter the user's nickname Tik Tok without @: %s", nik)
 
 # Function to handle connection errors
 def handle_connection_error():
@@ -83,9 +83,9 @@ def get_page(url):
     """Gets a page with error handling of the 503 status."""
     html = get_html(url, HEADERS)
     while html.status_code == 503:
-        logger.info("Ошибка страница %s"
-            "на данный момент недоступна! Код ошибки: %s"
-            "Победа близка, продолжаем дальше!",
+        logger.info("Error page %s"
+            "currently unavailable! Error code: %s"
+            "Victory is close, we continue on!",
             url, str(html.status_code))
         time.sleep(10)
         html = get_html(url, HEADERS)
@@ -112,9 +112,9 @@ def get_content2(html):
 # Function to handle a new video upload
 def uploaded_new_video(new_video):
     """Processes the download of a new video."""
-    logger.info("Наконец-то! Пользователь %s опубликовал новое "
-                "видео по ссылке: %s"
-                " \nНажми пробел чтобы остановить музыку!\n",
+    logger.info("Finally! The user %s posted a new video "
+                "at the link:: %s"
+                " \nPress the space bar to stop the music!\n",
                 nik, new_video['URL_Video_TikTok'])
     pg.mixer.music.load('Sound/Sound.mp3')
     pg.mixer.music.play(loops=-1)
@@ -132,13 +132,13 @@ def parser():
     # Первый парсинг
     html = get_page(url_tiktok)
     if html.status_code != 200:
-        logger.info("Ошибка №%s "
-                    "при получении %s", html.status_code, url_tiktok)
+        logger.info("Error №%s "
+                    "upon receipt %s", html.status_code, url_tiktok)
     else:
         videos_first = get_content2(html.text)
 
     while True:
-        logger.info("Парсим страницу: %s\n", url_tiktok)
+        logger.info("Parse the page: %s\n", url_tiktok)
         random.seed(str(datetime.datetime.now()))
         rand_time = random.uniform(10, 30)
         logger.info("ZZzzzz...timeout %s sec", rand_time)
@@ -146,7 +146,7 @@ def parser():
 
         html = get_page(url_tiktok)
         if html.status_code != 200:
-            logger.info("Ошибка №%s при получении %s",
+            logger.info("Error №%s upon receipt %s",
             html.status_code, url_tiktok)
         else:
             videos_second = get_content2(html.text)
@@ -160,17 +160,17 @@ def parser():
                 if videos_first[0] != videos_second[0]:
                     uploaded_new_video(videos_second[0])
                 else:
-                    logger.info("Все как обычно ничего нового")
+                    logger.info("Everything is as usual, nothing new")
             else:
-                logger.info("У пользователя %s "
-                            "нету видео или вернулась пустая строка "
-                            "попробуем еще...", nik)
+                logger.info("The user does not have a video %s "
+                            "or an empty line has returned. "
+                            "Let's try again...", nik)
 
-# Function for keyboard listener 
+# Function for keyboard listener
 def on_release(key):
     """Stops playing music by pressing the space bar."""
     if key == keyboard.Key.space:
-        logger.info("Слежка за %s продолжилась...", nik)
+        logger.info("The surveillance of %s continued...", nik)
         return False
 
 # Main execution block
@@ -178,7 +178,7 @@ if __name__ == "__main__":
     try:
         parser()
     except KeyboardInterrupt:
-        logger.warning("Прасинг прерван пользователем!")
+        logger.warning("The parsing was interrupted by the user!")
     except Exception as e:
         logger.error("%s", e)
         traceback.print_tb(e.__traceback__)
