@@ -1,33 +1,33 @@
 # TikTok User Tracker
 
-Проект "TikTok User Tracker" представляет собой эффективный инструмент, разработанный для мониторинга активности пользователей в популярной социальной сети TikTok. Этот скрипт обеспечивает автоматизированное отслеживание видеоконтента пользователей, позволяя анализировать их активность с легкостью и эффективностью.
+The TikTok User Tracker project is an effective tool designed to monitor user activity on the popular TikTok social network. This script provides automated tracking of users' video content, allowing you to analyze their activity with ease and efficiency.
 
-Благодаря данному инструменту вы можете получать уведомления о новых видеозаписях, отслеживать изменения в активности выбранных пользователей и анализировать их контент без необходимости постоянного вручную проверки страниц.
+Thanks to this tool, you can receive notifications about new videos, track changes in the activity of selected users and analyze their content without having to constantly manually check the pages.
 
-## Описание проекта
+## Description of the project
 
-Данный скрипт позволяет отслеживать появления нового видео пользователя TikTok, а также выводить ссылки на эти видео для последующего анализа.
+This script allows you to track the appearance of a new video by the user TikTok, as well as display links to these videos for subsequent analysis.
 
 ## Использование
 
-1. Установите необходимые библиотеки, запустив следующую команду:
+1. Install the necessary libraries by running the following command:
    pip install -r requirements.txt
 
-2. Запустите скрипт parserTikTok.py:
+2. Run the script parserTikTok.py:
    python parserTikTok.py
    
-3. Введите имя пользователя TikTok без символа @.
+3. Enter the user name Tik Tok without the @ symbol.
 
-4. Для остановки слежения нажмите пробел.
+4. To stop tracking, press the space bar.
 
-## Требования к окружению
+## Environment requirements
 
 - Python 3.x
-- Библиотеки: requests, BeautifulSoup, pygame, pynput
+- Libraries: requests, BeautifulSoup, pygame, pynput
 
 ## Примечания
 
-- Скрипт будет записывать данные о своей работе в файл Output.log.
-- При возникновении ошибок, вызванных недоступностью сервера, скрипт будет делать попытку повторного соединения через случайное время.
+- The script will write data about its work to a file Output.log.
+- If errors occur due to server unavailability, the script will attempt to reconnect after a random time.
 
 
